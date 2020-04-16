@@ -10,8 +10,9 @@
    http://www.springframework.org/schema/mvc
    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<context:component-scan
-		base-package="org.lazE.Ecommerce.controller" />
+	<context:component-scan base-package="org.lazE.Ecommerce.controller" />
+	<context:component-scan base-package="org.lazE.EcommerceBackend.daoimpl" />
+	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"></property>
