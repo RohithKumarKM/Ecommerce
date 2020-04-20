@@ -23,15 +23,13 @@
 						<script>
 							window.categoryId = '';
 						</script>
-
-						<ol class="breadcrumb">
-
-
-							<li><a href="${contextRoot}/home">Home</a></li>
-							<li class="active">All Products</li>
-
-
-						</ol>
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item active" aria-current="page"><a
+									href="${contextRoot}/home">Home</a></li>
+								<li class="breadcrumb-item active">All Products</li>
+							</ol>
+						</nav>
 					</c:if>
 
 
@@ -39,16 +37,16 @@
 						<script>
 							window.categoryId = '${category.id}';
 						</script>
+						<nav aria-label="breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item active" aria-current="page">><a
+									href="${contextRoot}/home">Home</a></li>
 
-						<ol class="breadcrumb">
+								<li class="breadcrumb-item active">Category</li>
 
-
-							<li><a href="${contextRoot}/home">Home</a></li>
-							<li class="active">Category</li>
-							<li class="active">${category.name}</li>
-
-
-						</ol>
+								<li class="breadcrumb-item active">${category.name}</li>
+							</ol>
+						</nav>
 					</c:if>
 
 

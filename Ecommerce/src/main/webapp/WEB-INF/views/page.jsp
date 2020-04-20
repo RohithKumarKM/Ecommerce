@@ -19,7 +19,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Ecommerce - ${title}</title>
+<title>Ecommerce ${title}</title>
 
 <script>
 	window.menu = '${title}';
