@@ -1,10 +1,12 @@
-<div class = "container">
+<div class="container">
 
-	<div class = "row">
-	
+	<div class="row">
+
 		<h1>About Us</h1>
 		<hr />
-		<p>This is About Us Page</p>
+		<p>This is an about us page</p>
+
 	</div>
+
 
 </div>

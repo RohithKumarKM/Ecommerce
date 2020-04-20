@@ -44,6 +44,19 @@
 			<version>${spring.version}</version>
 		</dependency>
 
+		<!-- Excluding commons logging -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
 		<!-- JSTL -->
 		<dependency>
 			<groupId>jstl</groupId>
