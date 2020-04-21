@@ -48,7 +48,8 @@
 		<!-- Page Content -->
 		<div class="content">
 			<!-- Main page -->
-			<<!-- Loading the home content -->
+			<
+			<!-- Loading the home content -->
 			<c:if test="${userClickHome == true }">
 				<%@include file="home.jsp"%>
 			</c:if>
@@ -75,6 +76,11 @@
 				<%@include file="singleProduct.jsp"%>
 			</c:if>
 			
+			<!-- Load only when user clicks manage product -->
+			<c:if test="${userClickManageProducts == true}">
+				<%@include file="manageProducts.jsp"%>
+			</c:if>
+
 		</div>
 		<!-- Footer comes here -->
 		<%@include file="./shared/footer.jsp"%>
