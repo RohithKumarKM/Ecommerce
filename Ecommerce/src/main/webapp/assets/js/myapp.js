@@ -190,7 +190,7 @@ $(function() {
 
 									str = '';
 
-									str += '<a href="${contextRoot}/manage/'
+									str += '<a href="'+window.contextRoot+'/manage/'
 											+ data
 											+ '/product" class="btn btn-warning">';
 									str += '<span class="glyphicon glyphicon-pencil"></span></a>'
@@ -251,5 +251,40 @@ $(function() {
 	/*
 	 * 
 	 */
+	
+	/*
+	 * validation code for category
+	 * 
+	 */
 
+	$categoryForm = $('#categoryForm');
+	
+	if($categoryForm.length) {
+		
+		$categoryForm.validate({			
+				rules: {
+					name: {
+						required: true,
+						minlength: 2
+					},
+					description: {
+						required: true,					
+					}				
+				},
+				messages: {					
+					name: {
+						required: 'Please enter Category Name',
+						minlength: 'Please enter atleast five characters'
+					},
+					description: {
+						required: 'Please add Description to the category'
+					}					
+				},
+				errorElement : 'em',
+				errorPlacement : function(error, element) {
+					error.addClass('help-block');
+					error.insertAfter(element); 
+				}				
+			});
+	}
 });

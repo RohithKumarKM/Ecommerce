@@ -102,7 +102,7 @@
 		<!-- DataTable Bootstrap Script -->
 		<script src="${js}/bootbox.min.js"></script>
 		
-		<!-- DataTable Bootstrap Script -->
+		<!-- JQuery Validator -->
 		<script src="${js}/jquery.validate.js"></script>
 		
 		<!-- Self coded javascript -->
