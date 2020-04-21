@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.lazE.Ecommerce.util.FileUploadUtility;
+import org.lazE.Ecommerce.validator.ProductValidator;
 import org.lazE.EcommerceBackend.dao.CategoryDAO;
 import org.lazE.EcommerceBackend.dao.ProductDAO;
 import org.lazE.EcommerceBackend.dto.Category;
@@ -17,9 +18,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -64,6 +67,9 @@ public class ManagementController {
 	public String handleProductSubmission(@Valid @ModelAttribute("product") Product mProduct, BindingResult results,
 			Model model, HttpServletRequest request) {
 
+		
+		new ProductValidator().validate(mProduct, results);
+		
 		// checking if there are any errors
 		if (results.hasErrors()) {
 
@@ -83,6 +89,20 @@ public class ManagementController {
 		}
 
 		return "redirect:/manage/products?operation=product";
+	}
+	
+	@RequestMapping(value="/product/{id}/activation", method=RequestMethod.POST)
+	@ResponseBody
+	public String handleProductActivation(@PathVariable int id) {
+		
+		Product product = productDAO.get(id);
+		boolean isActive = product.isActive();
+		//Activating and Deactivating based on the value of active field
+		product.setActive(!product.isActive());
+		//updating the product
+		productDAO.update(product);
+		return (isActive)? 	"You have Successfully Deactivated the Product with ID"+ product.getId() : 
+							"You have Successfully Activated the Product with ID"+ product.getId();
 	}
 
 	// returning category for all the request mapping
