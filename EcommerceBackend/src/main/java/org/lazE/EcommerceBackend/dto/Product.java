@@ -1,5 +1,5 @@
 package org.lazE.EcommerceBackend.dto;
-
+import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -9,45 +9,48 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+@Component
 @Entity
-public class Product {
+public class Product implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	// private fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String code;
-	
-	@NotBlank(message = "Please Enter the Product Name")
+	@NotBlank(message = "Please enter the product name!")
 	private String name;
-	@NotBlank(message = "Please Enter the Brand Name")
-	private String brand; 
-	@JsonIgnore
-	@NotBlank(message = "Please Enter the Description for Product")
-	private String description; 
+	@NotBlank(message = "Please enter the brand name!")
+	private String brand;
+	@NotBlank(message = "Please enter the description!")
+	private String description;
 	@Column(name = "unit_price")
-	@Min(value=1, message="The Price cannot be Less than 1")
+	@Min(value = 1, message="Please select at least one value!")
 	private double unitPrice;
 	private int quantity;
-	@Column(name = "is_active")
+	@Column(name = "is_active")	
 	private boolean active;
 	@Column(name = "category_id")
 	@JsonIgnore
-	private int categoryId; 
+	private int categoryId;
 	@Column(name = "supplier_id")
 	@JsonIgnore
-	private int supplierId; 
+	private int supplierId;
 	private int purchases;
 	private int views;
 	
 	
 	@Transient
 	private MultipartFile file;
-	
+			
 	public MultipartFile getFile() {
 		return file;
 	}
@@ -56,12 +59,16 @@ public class Product {
 		this.file = file;
 	}
 
-	//default constructor
+
+	// default constructor
 	public Product() {
+		
 		this.code = "PRD" + UUID.randomUUID().toString().substring(26).toUpperCase();
+		
 	}
 	
-	//getters and setters
+	
+	// setters and getters	
 	public int getId() {
 		return id;
 	}
@@ -122,19 +129,25 @@ public class Product {
 	public void setSupplierId(int supplierId) {
 		this.supplierId = supplierId;
 	}
+
 	public int getPurchases() {
 		return purchases;
 	}
+
 	public void setPurchases(int purchases) {
 		this.purchases = purchases;
 	}
+
 	public int getViews() {
 		return views;
 	}
+
 	public void setViews(int views) {
 		this.views = views;
 	}
 
+	
+	// toString for debugging
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", code=" + code + ", name=" + name + ", brand=" + brand + ", description="
@@ -142,6 +155,4 @@ public class Product {
 				+ ", categoryId=" + categoryId + ", supplierId=" + supplierId + ", purchases=" + purchases + ", views="
 				+ views + "]";
 	}
-	
-	
 }

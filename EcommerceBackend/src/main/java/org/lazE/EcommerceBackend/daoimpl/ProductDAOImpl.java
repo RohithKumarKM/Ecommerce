@@ -15,95 +15,134 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-
+	
 	/*
-	 * For Single Product
-	 */
+	 * SINGLE
+	 * */
+	
 	@Override
 	public Product get(int productId) {
-		try {
-			return sessionFactory.getCurrentSession().get(Product.class, Integer.valueOf(productId));
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		try {			
+			return sessionFactory
+					.getCurrentSession()
+						.get(Product.class,Integer.valueOf(productId));			
+		}
+		catch(Exception ex) {		
+			ex.printStackTrace();			
 		}
 		return null;
 	}
 
 	/*
-	 * List of all the Products
-	 */
+	 * LIST
+	 * */
+	
 	@Override
 	public List<Product> list() {
-		return sessionFactory.getCurrentSession().createQuery("FROM Product", Product.class).getResultList();
+		return sessionFactory
+				.getCurrentSession()
+					.createQuery("FROM Product" , Product.class)
+						.getResultList();
 	}
 
 	/*
-	 * Inserting products
-	 */
+	 * INSERT
+	 * */
 	@Override
 	public boolean add(Product product) {
-		try {
-			sessionFactory.getCurrentSession().persist(product);
+		try {			
+			sessionFactory
+					.getCurrentSession()
+						.persist(product);
 			return true;
-		} catch (Exception ex) {
-			ex.printStackTrace();
 		}
+		catch(Exception ex) {		
+			ex.printStackTrace();			
+		}		
 		return false;
 	}
 
 	/*
-	 * Update product
-	 */
+	 * UPDATE
+	 * */
 	@Override
 	public boolean update(Product product) {
-		try {
-			sessionFactory.getCurrentSession().update(product);
+		try {			
+			sessionFactory
+					.getCurrentSession()
+						.update(product);
 			return true;
-		} catch (Exception ex) {
-			ex.printStackTrace();
 		}
-		return false;
+		catch(Exception ex) {		
+			ex.printStackTrace();			
+		}		
+		return false;		
 	}
 
+	
 	/*
-	 * Delete product
-	 */
+	 * DELETE
+	 * */
 	@Override
 	public boolean delete(Product product) {
 		try {
-			/*
-			 * soft delete i.e., by force changing active to false
-			 */
+			
 			product.setActive(false);
+			// call the update method
 			return this.update(product);
-		} catch (Exception ex) {
-			ex.printStackTrace();
 		}
-		return false;
+		catch(Exception ex) {		
+			ex.printStackTrace();			
+		}		
+		return false;			
 	}
 
-	/*
-	 * Below are the business logic methods
-	 */
 	@Override
 	public List<Product> listActiveProducts() {
 		String selectActiveProducts = "FROM Product WHERE active = :active";
-		return sessionFactory.getCurrentSession().createQuery(selectActiveProducts, Product.class)
-				.setParameter("active", true).getResultList();
+		return sessionFactory
+				.getCurrentSession()
+					.createQuery(selectActiveProducts, Product.class)
+						.setParameter("active", true)
+							.getResultList();
 	}
 
 	@Override
 	public List<Product> listActiveProductsByCategory(int categoryId) {
 		String selectActiveProductsByCategory = "FROM Product WHERE active = :active AND categoryId = :categoryId";
-		return sessionFactory.getCurrentSession().createQuery(selectActiveProductsByCategory, Product.class)
-				.setParameter("active", true).setParameter("categoryId", categoryId).getResultList();
+		return sessionFactory
+				.getCurrentSession()
+					.createQuery(selectActiveProductsByCategory, Product.class)
+						.setParameter("active", true)
+						.setParameter("categoryId",categoryId)
+							.getResultList();
 	}
 
 	@Override
 	public List<Product> getLatestActiveProducts(int count) {
-		return sessionFactory.getCurrentSession()
-				.createQuery("FROM PRODUCT WHERE active = :active ORDER BY id", Product.class)
-				.setParameter("active", true).setFirstResult(0).setMaxResults(count).getResultList();
+		return sessionFactory
+				.getCurrentSession()
+					.createQuery("FROM Product WHERE active = :active ORDER BY id", Product.class)
+						.setParameter("active", true)
+							.setFirstResult(0)
+							.setMaxResults(count)
+								.getResultList();					
 	}
+
+	@Override
+	public List<Product> getProductsByParam(String param, int count) {
+		
+		String query = "FROM Product WHERE active = true ORDER BY " + param + " DESC";
+		
+		return sessionFactory
+					.getCurrentSession()
+					.createQuery(query,Product.class)
+					.setFirstResult(0)
+					.setMaxResults(count)
+					.getResultList();
+					
+		
+	}
+
 
 }

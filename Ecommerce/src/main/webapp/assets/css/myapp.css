@@ -5,7 +5,7 @@
  */
 
 html {
-	height:100%
+	height:100%;
 }
 
 body {
@@ -77,7 +77,7 @@ footer {
 .footer {
 	width:100%;
 	position:absolute;
-	bottom:15px;
+	bottom:20px;
 	height: 60px;
 	
 }
@@ -90,25 +90,18 @@ footer {
 	
 }
 
-.help-block{
-	color: #ff0000;
+.has-success {
+	color: #4582ec;
 }
 
-.adminDataTableImg{
-	height: 50px;
-	width: 50px;
-}
-/* .has-success {
-	color: #4582ec;
-} */
 /*Toggle Switch code*/
 
 /* The switch - the box around the slider */
 .switch {
   position: relative;
   display: inline-block;
-  width: 50px;
-  height: 30px;
+  width: 60px;
+  height: 34px;
 }
 
 /* Hide default HTML checkbox */
@@ -123,45 +116,37 @@ footer {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  border-radius: 30px;
-  /* -webkit-transition: .4s; */
-  transition: .5s;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 20px;
-  width: 20px;
-  left: 5px;
-  bottom: 5px;
-  border-radius: 50%;
-  background-color: #ffff;
-  /*-webkit-transition: .4s;*/
-  transition: .5s;
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
 input:checked + .slider {
-  background-color: #1863E6;
+  background-color: #2196F3;
 }
 
-/* input:focus + .slider {
+input:focus + .slider {
   box-shadow: 0 0 1px #2196F3;
-} */
+}
 
 input:checked + .slider:before {
-/*   -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px); */
-  transform: translateX(20px);
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
 }
 
-
-
-
-
-
-
-/* /* Rounded sliders
+/* Rounded sliders */
 .slider.round {
   border-radius: 34px;
 }
@@ -170,13 +155,13 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-overridden css
+/* overridden css */
 .help-block {
 	color: #ff0000;
 }
 
 
-Shopping Cart
+/*Shopping Cart*/
 .table>tbody>tr>td, .table>tfoot>tr>td{
     vertical-align: middle;
 }
@@ -213,12 +198,12 @@ Shopping Cart
 }
 
 
-cart checkout
+/* cart checkout */
 .panel-title {display: inline;font-weight: bold;}
 .checkbox.pull-right { margin: 0; }
 .pl-ziro { padding-left: 0px; }
 
-order receipt
+/* order receipt */
 .invoice-title h2, .invoice-title h3 {
     display: inline-block;
 }
@@ -236,7 +221,7 @@ order receipt
 }
 
 
-landing css
+/* landing css */
 
 .landingImg {
 	width: auto;
@@ -252,4 +237,5 @@ landing css
 		height:100%;
 		z-index:9999;
 		background:url(../images/pre-loader.gif) 50% no-repeat #fff
-} */ */
+}
+

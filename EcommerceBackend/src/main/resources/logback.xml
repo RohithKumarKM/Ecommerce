@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>%-5level %msg %d{HH:mm:ss.SSS} %logger{36} %n</Pattern>
+			<!-- 5 -No. of Characters 
+				level - debug,trace,info,warn,error 
+				msg - message we display in the logging 
+				d{HH:mm:ss.SSS}- Time of the logging event 
+				logger{36}- from where the message is coming{this is a class from where we are going to log the activity 
+				%n- seperating every logging info on a separate line -->
+		</encoder>
+	</appender>
+
+	<logger name="org.lazE" level="DEBUG" additivity = "false">
+		<appender-ref ref="consoleAppender" />
+	</logger>
+
+	<root level="INFO"> <!-- by default level is debug -->
+		<appender-ref ref="consoleAppender" />
+	</root>
+
+</configuration>
